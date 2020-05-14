@@ -5,6 +5,12 @@ class Car {
    * в консоль значения свойств maxSpeed, speed, isOn, distance и price.
    */
 
+  getSpecs(car) {
+    console.log(
+      `maxSpeed: ${this.maxSpeed}, speed: ${this.speed}, isOn: ${this.isOn}, distance: ${this.distance}, price: ${this.price}`,
+    );
+  }
+
   /*
    * Конструктор получает объект настроек.
    *
@@ -15,7 +21,13 @@ class Car {
    *  isOn - заведен ли автомобиль, значения true или false. Изначально false
    *  distance - общий киллометраж, изначально 0
    */
-  constructor() {}
+  constructor(speed = 0, price, maxSpeed, isOn = false, distance = 0) {
+    this.speed = speed;
+    this.price = price;
+    this.maxSpeed = maxSpeed;
+    this.isOn = isOn;
+    this.distance = distance;
+  }
 
   /*
    * Добавь геттер и сеттер для свойства price,
