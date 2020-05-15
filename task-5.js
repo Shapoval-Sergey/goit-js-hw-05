@@ -5,10 +5,11 @@ class Car {
    * в консоль значения свойств maxSpeed, speed, isOn, distance и price.
    */
 
-  getSpecs(car) {
+  static getSpecs(car) {
     console.log(
       `maxSpeed: ${this.maxSpeed}, speed: ${this.speed}, isOn: ${this.isOn}, distance: ${this.distance}, price: ${this.price}`,
     );
+    return car;
   }
 
   /*
@@ -23,7 +24,7 @@ class Car {
    */
   constructor(speed = 0, price, maxSpeed, isOn = false, distance = 0) {
     this.speed = speed;
-    this.price = price;
+    this._price = price;
     this.maxSpeed = maxSpeed;
     this.isOn = isOn;
     this.distance = distance;
@@ -33,41 +34,67 @@ class Car {
    * Добавь геттер и сеттер для свойства price,
    * который будет работать с свойством цены автомобиля.
    */
+  get price() {
+    return this._price;
+  }
 
+  set price(price) {
+    this._price = price;
+  }
   /*
    * Добавь код для того чтобы завести автомобиль
    * Записывает в свойство isOn значение true
    */
-  turnOn() {}
+
+  turnOn() {
+    this.isOn = true;
+  }
 
   /*
    * Добавь код для того чтобы заглушить автомобиль
    * Записывает в свойство isOn значение false,
    * и сбрасывает текущую скорость в 0
    */
-  turnOff() {}
+
+  turnOff() {
+    this.isOn = false;
+    this.speed = 0;
+  }
 
   /*
    * Добавялет к свойству speed полученное значение,
    * при условии что результирующая скорость
    * не больше чем значение свойства maxSpeed
    */
-  accelerate(value) {}
+  accelerate(value) {
+    if (this.speed <= this.maxSpeed) {
+      this.speed += value;
+    }
+  }
 
   /*
    * Отнимает от свойства speed полученное значение,
    * при условии что результирующая скорость не меньше нуля
    */
-  decelerate(value) {}
+  decelerate(value) {
+    if (this.speed - value >= 0) {
+      this.speed -= value;
+    }
+  }
 
   /*
    * Добавляет в поле distance киллометраж (hours * speed),
    * но только в том случае если машина заведена!
    */
-  drive(hours) {}
+  drive(hours) {
+    if (this.turnOn) {
+      this.distance = hours * this.speed;
+    }
+  }
 }
 
 const mustang = new Car({ maxSpeed: 200, price: 2000 });
+console.log(mustang);
 
 mustang.turnOn();
 mustang.accelerate(50);

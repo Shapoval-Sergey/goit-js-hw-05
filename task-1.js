@@ -8,7 +8,12 @@ Account.prototype.getInfo = function() {
 };
 console.log(typeof Account.prototype.getInfo); // function
 
-const mango = new Account('Mangozedog', 'mango@dog.woof');
+const mango = new Account({
+  login: 'Mangozedog',
+  email: 'mango@dog.woof',
+});
+
+console.log(mango);
 
 mango.getInfo(); // Login: Mangozedog, Email: mango@dog.woof
 

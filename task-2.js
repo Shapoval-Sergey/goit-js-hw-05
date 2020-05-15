@@ -13,6 +13,7 @@ class User {
 }
 
 const mango = new User('Mango', 2, 20);
+console.log(mango);
 mango.getInfo(); // User Mango is 2 years old and has 20 followers
 
 const poly = new User('Poly', 3, 17);
